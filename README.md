@@ -135,7 +135,7 @@ python secure_app.py
 
 # 👤 Author
 
-* **Name:** S. Balamurugan
+* **Name:** Balamurugan S
 * **Internship:** CodeAlpha Cybersecurity Internship
 
 ## LinkedIn
