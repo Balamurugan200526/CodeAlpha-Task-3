@@ -144,7 +144,7 @@ https://www.linkedin.com/in/balamurugan-s-468387337
 
 ## GitHub
 
-Add your GitHub repository link here.
+https://github.com/Balamurugan200526/CodeAlpha-Task-3.git
 
 ---
 
