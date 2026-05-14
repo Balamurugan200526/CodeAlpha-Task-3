@@ -1,0 +1,91 @@
+Run started:2026-05-14 12:48:01.344043+00:00
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: .\vulnerable_app.py:8:0
+7	import sqlite3
+8	import subprocess
+9	import hashlib
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'admin123'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\vulnerable_app.py:17:11
+16	USERNAME = "admin"
+17	PASSWORD = "admin123"
+18	SECRET_KEY = "mysecretkey2024"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'mysecretkey2024'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\vulnerable_app.py:18:13
+17	PASSWORD = "admin123"
+18	SECRET_KEY = "mysecretkey2024"
+19	API_KEY = "sk-abc123hardcodedkey"
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\vulnerable_app.py:31:12
+30	    # DANGEROUS: directly concatenating user input into SQL
+31	    query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
+32	    print("[*] Running query:", query)
+
+--------------------------------------------------
+>> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b602_subprocess_popen_with_shell_equals_true.html
+   Location: .\vulnerable_app.py:50:13
+49	    # DANGEROUS: shell=True with unsanitized input
+50	    result = subprocess.call("ping " + host, shell=True)
+51	    return result
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b324_hashlib.html
+   Location: .\vulnerable_app.py:60:11
+59	    # DANGEROUS: MD5 is easily cracked using rainbow tables
+60	    return hashlib.md5(password.encode()).hexdigest()
+61	
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\vulnerable_app.py:93:23
+92	        cursor = conn.cursor()
+93	        cursor.execute("SELECT * FROM users WHERE id = " + str(user_id))
+94	        return cursor.fetchall()
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 45
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 3
+		Medium: 2
+		High: 2
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 3
+		High: 3
+Files skipped (0):
