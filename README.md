@@ -73,7 +73,7 @@ The objectives of this task were to:
 ## Step 1 — Clone the Repository
 
 ```powershell
-git clone https://github.com/yourusername/CodeAlpha_SecureCodeReview.git
+git clone https://github.com/Balamurugan200526/CodeAlpha_SecureCodeReview.git
 
 cd CodeAlpha_SecureCodeReview
 ```
